@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link';
 import { useContext, useEffect } from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import { ExerciseContext} from './../components/providers/ExerciseProvider';
@@ -27,12 +28,14 @@ const Male = ({data}) => {
       </Head>
 
       <div className="container  mx-auto  px-4">
-        <a href="" className="text-xl  uppercase">
-          {'<'} Back
-        </a>
+        <Link href="/exercises">
+          <a className="text-xl  uppercase">
+            {'<'} Back
+          </a>
+        </Link>
 
-        <div className="flex  mt-8">
-          <img src={exercise.male.image} alt={exercise.name} className="block  rounded-lg  mr-8  w-1/3 | object-cover  object-center" />
+        <div className="md:flex  mt-8">
+          <img src={exercise.male.image} alt={exercise.name} className="block  rounded-lg  mr-8  mb-8  w-full  md:w-1/3 | object-cover  object-center" />
 
           <div className="w-full">
             <h1 className="mb-2  text-5xl  font-bold">

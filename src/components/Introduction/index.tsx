@@ -1,9 +1,12 @@
 import { Title } from './Title';
+import Link from 'next/link';
 
 const Button = ({href, text}) => (
-  <a href={href} className="block  w-full  sm:w-auto | rounded | py-3  px-6  mr-4  mb-4 | bg-green-800  hover:bg-green-700 | text-sm  sm:text-md  font-bold  uppercase  tracking-wider  text-center">
-    {text}
-  </a>
+  <Link href={href}>
+    <a href={href} className="block  w-full  sm:w-auto | rounded | py-3  px-6  mr-4  mb-4 | bg-green-800  hover:bg-green-700 | text-sm  sm:text-md  font-bold  uppercase  tracking-wider  text-center">
+      {text}
+    </a>
+  </Link>
 )
 
 const Introduction = () => (
@@ -21,11 +24,11 @@ const Introduction = () => (
         </h2>
 
         <div className="flex  flex-wrap">
-          <Button href="/single" text="Arms" />
-          <Button href="/single" text="Chest" />
-          <Button href="/single" text="Back" />
-          <Button href="/single" text="Legs" />
-          <Button href="/single" text="Cardio" />
+          <Button href="/exercises?groups=arms" text="Arms" />
+          <Button href="/exercises?groups=chest" text="Chest" />
+          <Button href="/exercises?groups=back" text="Back" />
+          <Button href="/exercises?groups=legs" text="Legs" />
+          <Button href="/exercises?groups=cardio" text="Cardio" />
         </div>
       </div>
     </div>

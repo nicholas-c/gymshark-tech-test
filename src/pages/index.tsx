@@ -8,7 +8,6 @@ import { Card } from './../components/Card';
 
 const Home = ({data}) => {
   const { exercises, setExercises } = useContext(ExerciseContext);
-  const { gender } = useContext(GenderContext);
 
   useEffect(() => setExercises(data.exercises));
 
@@ -30,7 +29,7 @@ const Home = ({data}) => {
 
           <div className="flex  overflow-x-scroll">
             {exercises.length > 0 && exercises.map(exercise => (
-              <Card exercise={exercise} key={exercise.id} />
+              <Card exercise={exercise} key={exercise.id} classes="w-2/3  sm:w-1/4  xl:w-1/5 | m-4" />
             ))}
           </div>
         </div>

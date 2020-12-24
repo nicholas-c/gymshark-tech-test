@@ -46,10 +46,14 @@ const Exercises = ({data, groups = []}) => {
             </div>
           </div>
 
-          <div className="flex  flex-wrap">
-            {exercises.length > 0 && exercises.map(exercise => (
+          <div className="w-full  flex  flex-wrap">
+            {exercises.length > 0 ? exercises.map(exercise => (
               <Card exercise={exercise} classes="w-full  sm:w-1/2  lg:w-1/3  p-4" />
-            ))}
+            )) : (
+              <h2 className="w-full | uppercase  font-bold  text-4xl  text-center">
+                No exercises found
+              </h2>
+            )}
           </div>
         </div>
       </div>

@@ -1,15 +1,12 @@
 import { createContext, useState } from 'react';
 
-const GenderContext = createContext([]);
+const GenderContext = createContext({});
 
 const GenderContextProvider = ({children}) => {
   const [ gender, setGender ] = useState('male');
 
   return (
-    <GenderContext.Provider value={{
-      gender,
-      setGender
-    }}>
+    <GenderContext.Provider value={useState('male')}>
       {children}
     </GenderContext.Provider>
   )

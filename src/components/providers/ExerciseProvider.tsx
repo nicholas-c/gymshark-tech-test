@@ -1,6 +1,6 @@
 import { createContext, useState, useContext } from 'react';
 
-const ExerciseContext = createContext([]);
+const ExerciseContext = createContext({});
 
 const ExerciseContextProvider = ({children}) => {
   const [ exercises, setExercises ] = useState([]);

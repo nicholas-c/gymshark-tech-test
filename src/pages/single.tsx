@@ -4,7 +4,8 @@ import { useContext, useEffect } from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import { ExerciseContext} from './../components/providers/ExerciseProvider';
 
-const Male = ({data}) => {
+const Single = ({data}) => {
+  // @ts-ignore
   const { exercises, setExercises } = useContext(ExerciseContext);
 
   useEffect(() => setExercises(data.exercises));
@@ -68,7 +69,7 @@ const Male = ({data}) => {
   )
 }
 
-Male.getInitialProps = async () => {
+Single.getInitialProps = async () => {
   const apiResponse = await fetch('http://localhost:3000/api/exercises?limit=1');
   const data = await apiResponse.json();
 
@@ -77,4 +78,4 @@ Male.getInitialProps = async () => {
   }
 }
 
-export { Male as default }
+export { Single as default }

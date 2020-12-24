@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { GenderContext } from './../providers/GenderProvider';
 
 const Card = ({ exercise, classes }) => {
+  // @ts-ignore
   const { gender } = useContext(GenderContext);
 
   return (

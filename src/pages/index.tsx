@@ -7,6 +7,7 @@ import { Introduction } from './../components/Introduction';
 import { Card } from './../components/Card';
 
 const Home = ({data}) => {
+  // @ts-ignore
   const { exercises, setExercises } = useContext(ExerciseContext);
 
   useEffect(() => setExercises(data.exercises));

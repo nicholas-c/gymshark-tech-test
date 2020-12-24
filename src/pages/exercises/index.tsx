@@ -6,6 +6,7 @@ import { Card } from './../../components/Card';
 import muscleGroups from './../../config/muscleGroups.json';
 
 const Exercises = ({data, groups = []}) => {
+  // @ts-ignore
   const { exercises, setExercises } = useContext(ExerciseContext);
 
   useEffect(() => setExercises(data.exercises));

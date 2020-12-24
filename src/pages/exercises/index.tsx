@@ -63,7 +63,9 @@ const Exercises = ({data, groups = []}) => {
 };
 
 Exercises.getInitialProps = async (req) => {
-  const apiResponse = await fetch('http://localhost:3000/api/exercises?limit=21');
+  const dev = process.env.NODE_ENV !== 'production';
+  const server = dev ? 'http://localhost:3000' : 'https://gymshark-tech-test.vercel.app/';
+  const apiResponse = await fetch(`${server}/api/exercises?limit=21`);
   const data = await apiResponse.json();
 
   return {

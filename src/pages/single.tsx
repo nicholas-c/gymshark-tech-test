@@ -70,7 +70,9 @@ const Single = ({data}) => {
 }
 
 Single.getInitialProps = async () => {
-  const apiResponse = await fetch('http://localhost:3000/api/exercises?limit=1');
+  const dev = process.env.NODE_ENV !== 'production';
+  const server = dev ? 'http://localhost:3000' : 'https://gymshark-tech-test.vercel.app/';
+  const apiResponse = await fetch(`${server}/api/exercises?limit=1`);
   const data = await apiResponse.json();
 
   return {

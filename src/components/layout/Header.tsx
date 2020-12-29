@@ -3,7 +3,7 @@ import { GenderToggle } from './../GenderToggle';
 
 const Header = () => (
   <header>
-    <div className="container | relative | flex  justify-center  items-center | mx-auto | p-4">
+    <div className="container | relative | flex  md:justify-center  items-center | mx-auto | p-4">
       <Link href="/">
         <a>
           <img src="/logo.svg" alt="Gymshark" className="w-12" />

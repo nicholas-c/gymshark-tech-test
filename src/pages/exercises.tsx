@@ -1,17 +1,13 @@
 import { NextApiRequest } from 'next';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { useContext, useEffect, useState } from 'react';
-import { ExerciseContext} from '../components/providers/ExerciseProvider';
+import { useContext, useEffect } from 'react';
+import { ExerciseContext } from '../components/providers/ExerciseProvider';
+import { Filters } from '../components/Filters';
 import { Card } from '../components/Card';
-import muscleGroups from '../config/muscleGroups.json';
 
 const Exercises = ({data, groups = ''}) => {
   // @ts-ignore
-  const { exercises, updateExercises, setExercises } = useContext(ExerciseContext);
-  const [ filters, setFilters ] = useState(groups !== '' ? groups.split(',') : []);
-  const Router = useRouter();
-  const { count, remaining, total } = data;
+  const { exercises, setExercises } = useContext(ExerciseContext);
 
   useEffect(() => setExercises(data.exercises));
 
@@ -27,53 +23,11 @@ const Exercises = ({data, groups = ''}) => {
         </h1>
 
         <div className="md:flex">
-          <div className="relative | w-full  md:w-1/5 | flex-shrink-0">
-            <div className="md:sticky  top-0 | pr-4">
-              <h2 className="mb-2  py-2 | font-bold  uppercase">
-                Filters
-              </h2>
-
-              <ol className="mb-4">
-                {muscleGroups.map(group => (
-                  <li key={group}>
-                    <label className="flex  items-center  mb-2  cursor-pointer">
-                      <input type="checkbox" name="groups" value={group} className="appearance-none  cursor-pointer | h-5  w-5 | mr-2 | border  border-white  rounded | checked:bg-green-600" checked={filters.includes(group.toLowerCase())} onChange={(e) => {
-                        const inputName = e.target.value.toLowerCase();
-
-                        if (!e.target.checked) {
-                          const newFilters = [...filters.filter((filter) => inputName !== filter)];
-                          setFilters(newFilters)
-
-                          Router.push({
-                            pathname: '/exercises',
-                            query: {
-                              groups: newFilters.join(',')
-                            }
-                          })
-                        } else {
-                          const newFilters = [...filters, inputName];
-                          setFilters(newFilters)
-
-                          Router.push({
-                            pathname: '/exercises',
-                            query: {
-                              groups: newFilters.join(',')
-                            }
-                          })
-                        }
-                      }} />
-
-                      {group}
-                    </label>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div>
+          <Filters groups={groups} />
 
           <div className="w-full  flex  flex-wrap">
             {exercises.length > 0 ? exercises.map(exercise => (
-              <div className="w-full  sm:w-1/2  lg:w-1/3  p-4" key={exercise.id}>
+              <div className="w-full  sm:w-1/2  lg:w-1/3  py-2  md:p-4" key={exercise.id}>
                 <Card exercise={exercise} classes="w-full" />
               </div>
             )) : (

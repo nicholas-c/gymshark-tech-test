@@ -1,27 +1,14 @@
 import Head from 'next/head'
 import Link from 'next/link';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import ReactHtmlParser from 'react-html-parser';
-import { ExerciseContext} from './../../components/providers/ExerciseProvider';
+import { GenderContext } from './../../components/providers/GenderProvider';
 import { CaretLeft } from "phosphor-react";
 
-const Single = ({data}) => {
+
+const Single = ({ exercise }) => {
   // @ts-ignore
-  const { exercises, setExercises } = useContext(ExerciseContext);
-
-  console.log(data)
-
-  useEffect(() => setExercises(data.exercises));
-
-  const exercise = exercises[0];
-
-  if (!exercise) {
-    return (
-      <>
-        Loading
-      </>
-    )
-  }
+  const { gender } = useContext(GenderContext);
 
   return (
     <>
@@ -37,7 +24,7 @@ const Single = ({data}) => {
         </Link>
 
         <div className="md:flex  mt-8">
-          <img src={exercise.male.image} alt={exercise.name} className="block  rounded-lg  mr-8  mb-8  w-full  md:w-1/3 | object-cover  object-center" />
+          <img src={exercise[gender].image} alt={exercise.name} className="block  rounded-lg  mr-8  mb-8  w-full  md:w-1/3 | object-cover  object-center" />
 
           <div className="w-full">
             <h1 className="mb-2  text-5xl  font-bold">
@@ -73,12 +60,11 @@ const Single = ({data}) => {
 Single.getInitialProps = async (req) => {
   const dev = process.env.NODE_ENV !== 'production';
   const server = dev ? 'http://localhost:3000' : 'https://gymshark-tech-test.vercel.app/';
-  console.log(`${server}/api/exercises?limit=1&name=${req.query.exercise}`)
   const apiResponse = await fetch(`${server}/api/exercises?limit=1&name=${req.query.exercise}`);
   const data = await apiResponse.json();
 
   return {
-    data
+    exercise: data.exercises[0]
   }
 }
 

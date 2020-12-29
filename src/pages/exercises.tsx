@@ -43,7 +43,7 @@ const Exercises = ({data, groups = ''}) => {
 };
 
 Exercises.getInitialProps = async (req: NextApiRequest) => {
-  const url = new URL('/api/exercises', process.env.API_HOST);
+  const url = new URL('/api/exercises', process.env.NEXT_PUBLIC_API_HOST);
   const groups = req.query.groups;
 
   url.searchParams.append('limit', '21');

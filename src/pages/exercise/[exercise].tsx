@@ -33,7 +33,7 @@ const Single = ({ exercise }) => {
 
             <p className="text-sm  text-gray-300  mb-4">
               {exercise.bodyAreas.map((area, index) => (
-                <span>
+                <span key={area}>
                   {area + (index !== exercise.bodyAreas.length - 1 ? ' | ' : '')}
                 </span>
               ))}
@@ -58,7 +58,8 @@ const Single = ({ exercise }) => {
 }
 
 Single.getInitialProps = async (req) => {
-  const url = new URL('/api/exercises', process.env.API_HOST);
+  console.log(process.env.API_HOST)
+  const url = new URL('/api/exercises', process.env.NEXT_PUBLIC_API_HOST);
 
   url.searchParams.append('limit', '1');
   url.searchParams.append('name', req.query.exercise);

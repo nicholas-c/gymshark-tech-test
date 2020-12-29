@@ -38,7 +38,7 @@ const Home = ({data}) => {
 }
 
 Home.getInitialProps = async () => {
-  const url = new URL('/api/exercises', process.env.API_HOST);
+  const url = new URL('/api/exercises', process.env.NEXT_PUBLIC_API_HOST);
 
   url.searchParams.append('limit', '10');
   url.searchParams.append('offset', '41');

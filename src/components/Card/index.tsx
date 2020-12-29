@@ -1,13 +1,14 @@
 import { useContext } from 'react';
 import Link from 'next/link';
 import { GenderContext } from './../providers/GenderProvider';
+import { slugify } from './../../utils'
 
 const Card = ({ exercise, classes }) => {
   // @ts-ignore
   const { gender } = useContext(GenderContext);
 
   return (
-    <Link href={`/exercise/${exercise.name}`}>
+    <Link href={`/exercise/${slugify(exercise.name)}`}>
       <a className={`block | ${classes} | flex-shrink-0`}>
         <img src={exercise[gender].image} alt={exercise.name} className="rounded-lg  mb-2  h-52  w-full | object-cover  object-center" loading="lazy" />
 

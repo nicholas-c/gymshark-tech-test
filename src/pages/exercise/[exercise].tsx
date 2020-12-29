@@ -2,17 +2,18 @@ import Head from 'next/head'
 import Link from 'next/link';
 import { useContext, useEffect } from 'react';
 import ReactHtmlParser from 'react-html-parser';
-import { ExerciseContext} from './../components/providers/ExerciseProvider';
+import { ExerciseContext} from './../../components/providers/ExerciseProvider';
+import { CaretLeft } from "phosphor-react";
 
 const Single = ({data}) => {
   // @ts-ignore
   const { exercises, setExercises } = useContext(ExerciseContext);
 
+  console.log(data)
+
   useEffect(() => setExercises(data.exercises));
 
   const exercise = exercises[0];
-
-  console.log(exercise)
 
   if (!exercise) {
     return (
@@ -30,8 +31,8 @@ const Single = ({data}) => {
 
       <div className="container  mx-auto  px-4">
         <Link href="/exercises">
-          <a className="text-xl  uppercase">
-            {'<'} Back
+          <a className="flex  items-center | text-xl  uppercase">
+            <CaretLeft size={24} className="mr-1" /> Back
           </a>
         </Link>
 
@@ -69,10 +70,11 @@ const Single = ({data}) => {
   )
 }
 
-Single.getInitialProps = async () => {
+Single.getInitialProps = async (req) => {
   const dev = process.env.NODE_ENV !== 'production';
   const server = dev ? 'http://localhost:3000' : 'https://gymshark-tech-test.vercel.app/';
-  const apiResponse = await fetch(`${server}/api/exercises?limit=1`);
+  console.log(`${server}/api/exercises?limit=1&name=${req.query.exercise}`)
+  const apiResponse = await fetch(`${server}/api/exercises?limit=1&name=${req.query.exercise}`);
   const data = await apiResponse.json();
 
   return {

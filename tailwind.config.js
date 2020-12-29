@@ -1,3 +1,8 @@
 module.exports = {
-  purge: ['./src/**/*.js']
+  purge: ['./src/**/*.ts', './src/**/*.tsx'],
+  variants: {
+    extend: {
+      backgroundColor: ['checked']
+    }
+  }
 }

@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import { useContext, useEffect } from 'react';
 import { ExerciseContext} from './../components/providers/ExerciseProvider';
-import { GenderContext } from './../components/providers/GenderProvider';
-
 import { Introduction } from './../components/Introduction';
 import { Card } from './../components/Card';
 
@@ -40,9 +38,12 @@ const Home = ({data}) => {
 }
 
 Home.getInitialProps = async () => {
-  const dev = process.env.NODE_ENV !== 'production';
-  const server = dev ? 'http://localhost:3000' : 'https://gymshark-tech-test.vercel.app/';
-  const apiResponse = await fetch(`${server}/api/exercises?limit=10&offset=41`);
+  const url = new URL('/api/exercises', process.env.API_HOST);
+
+  url.searchParams.append('limit', '10');
+  url.searchParams.append('offset', '41');
+
+  const apiResponse = await fetch(url.href);
   const data = await apiResponse.json();
 
   return {

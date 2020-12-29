@@ -43,14 +43,13 @@ const Exercises = ({data, groups = ''}) => {
 };
 
 Exercises.getInitialProps = async (req: NextApiRequest) => {
-  const dev = process.env.NODE_ENV !== 'production';
-  const server = dev ? 'http://localhost:3000' : 'https://gymshark-tech-test.vercel.app/';
-  const url = new URL('/api/exercises', server);
+  const url = new URL('/api/exercises', process.env.API_HOST);
   const groups = req.query.groups;
 
   url.searchParams.append('limit', '21');
 
   if (groups) {
+    // @ts-ignore
     url.searchParams.append('groups', groups);
   }
 

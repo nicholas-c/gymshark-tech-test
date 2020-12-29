@@ -21,6 +21,7 @@ const exercisesApi = async (req: NextApiRequestWithQuery, res: NextApiResponse) 
     };
 
     if (groups) {
+      // @ts-ignore
       const filter = groups.split(',');
 
       data.exercises = data.exercises.filter(item => {

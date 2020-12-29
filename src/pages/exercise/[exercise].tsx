@@ -58,9 +58,12 @@ const Single = ({ exercise }) => {
 }
 
 Single.getInitialProps = async (req) => {
-  const dev = process.env.NODE_ENV !== 'production';
-  const server = dev ? 'http://localhost:3000' : 'https://gymshark-tech-test.vercel.app/';
-  const apiResponse = await fetch(`${server}/api/exercises?limit=1&name=${req.query.exercise}`);
+  const url = new URL('/api/exercises', process.env.API_HOST);
+
+  url.searchParams.append('limit', '1');
+  url.searchParams.append('name', req.query.exercise);
+
+  const apiResponse = await fetch(url.href);
   const data = await apiResponse.json();
 
   return {

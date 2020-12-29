@@ -58,7 +58,7 @@ const Single = ({ exercise }) => {
 }
 
 Single.getInitialProps = async (req) => {
-  console.log(process.env.API_HOST)
+  console.log(process.env.NEXT_PUBLIC_API_HOST)
   const url = new URL('/api/exercises', process.env.NEXT_PUBLIC_API_HOST);
 
   url.searchParams.append('limit', '1');

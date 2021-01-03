@@ -1,10 +1,9 @@
 import { useContext } from 'react';
 import Link from 'next/link';
 import { GenderContext } from './../providers/GenderProvider';
-import { slugify } from './../../utils'
+import { slugify } from './../../utils';
 
 const Card = ({ exercise, classes }) => {
-  // @ts-ignore
   const { gender } = useContext(GenderContext);
 
   return (
@@ -17,7 +16,7 @@ const Card = ({ exercise, classes }) => {
         </h2>
 
         <p className="text-sm  text-gray-300">
-          {exercise.bodyAreas.map((area, index) => (
+          {exercise.bodyAreas.map((area: string, index: number) => (
             <span key={index + area}>
               {area + (index !== exercise.bodyAreas.length - 1 ? ' | ' : '')}
             </span>
@@ -25,7 +24,7 @@ const Card = ({ exercise, classes }) => {
         </p>
       </a>
     </Link>
-  )
-}
+  );
+};
 
 export { Card }

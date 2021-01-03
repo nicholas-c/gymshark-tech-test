@@ -13,6 +13,6 @@ const Header = () => (
       <GenderToggle />
     </div>
   </header>
-)
+);
 
 export { Header }

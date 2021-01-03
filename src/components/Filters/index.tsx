@@ -8,31 +8,31 @@ const Filters = ({groups}) => {
   const [ filters, setFilters ] = useState(groups !== '' ? groups.split(',') : []);
   const [ isOpen, setOpen ] = useState(false);
 
-  const updateFilters = (e) => {
+  const updateFilters = e => {
     const inputName = e.target.value.toLowerCase();
 
     if (!e.target.checked) {
-      const newFilters = [...filters.filter((filter) => inputName !== filter)];
-      setFilters(newFilters)
+      const newFilters = [...filters.filter((filter: string) => inputName !== filter)];
+      setFilters(newFilters);
 
       Router.push({
         pathname: '/exercises',
         query: {
           groups: newFilters.join(',')
         }
-      })
+      });
     } else {
       const newFilters = [...filters, inputName];
-      setFilters(newFilters)
+      setFilters(newFilters);
 
       Router.push({
         pathname: '/exercises',
         query: {
           groups: newFilters.join(',')
         }
-      })
+      });
     }
-  }
+  };
 
   return (
     <div className="relative | w-full  md:w-1/5 | flex-shrink-0">
@@ -54,7 +54,7 @@ const Filters = ({groups}) => {
         </ol>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export { Filters }

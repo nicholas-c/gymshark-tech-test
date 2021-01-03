@@ -6,7 +6,6 @@ import { Filters } from '../components/Filters';
 import { Card } from '../components/Card';
 
 const Exercises = ({data, groups = ''}) => {
-  // @ts-ignore
   const { exercises, setExercises } = useContext(ExerciseContext);
 
   useEffect(() => setExercises(data.exercises));
@@ -42,14 +41,17 @@ const Exercises = ({data, groups = ''}) => {
   );
 };
 
-Exercises.getInitialProps = async (req: NextApiRequest) => {
+Exercises.getInitialProps = async (req: NextApiRequest & {
+  query: {
+    groups: string
+  }
+}) => {
   const url = new URL('/api/exercises', process.env.NEXT_PUBLIC_API_HOST);
   const groups = req.query.groups;
 
   url.searchParams.append('limit', '21');
 
   if (groups) {
-    // @ts-ignore
     url.searchParams.append('groups', groups);
   }
 

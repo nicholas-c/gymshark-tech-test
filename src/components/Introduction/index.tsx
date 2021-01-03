@@ -1,13 +1,16 @@
 import { Title } from './Title';
 import Link from 'next/link';
 
-const Button = ({href, text}) => (
+const Button = ({href, text}: {
+  href: string,
+  text: string
+}) => (
   <Link href={href}>
     <a href={href} className="block  w-full  sm:w-auto | rounded | py-3  px-6  sm:mr-4  mb-4 | bg-green-800  hover:bg-green-700 | text-sm  sm:text-md  font-bold  uppercase  tracking-wider  text-center">
       {text}
     </a>
   </Link>
-)
+);
 
 const Introduction = () => (
   <div className="container  mx-auto  px-4">
@@ -15,7 +18,7 @@ const Introduction = () => (
       <Title content="Exercise Finder" />
 
       <p className="md:w-1/2  text-gray-500">
-        Browse our illustrated library of at-home, and gym exercises for beginners and beyond. Discover new exercises to use in your routines and reach your fitness goals. 
+        Browse our illustrated library of at-home, and gym exercises for beginners and beyond. Discover new exercises to use in your routines and reach your fitness goals.
       </p>
 
       <div className="py-4">
@@ -33,6 +36,6 @@ const Introduction = () => (
       </div>
     </div>
   </div>
-)
+);
 
 export { Introduction }

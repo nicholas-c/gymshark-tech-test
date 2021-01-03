@@ -5,9 +5,7 @@ import ReactHtmlParser from 'react-html-parser';
 import { GenderContext } from './../../components/providers/GenderProvider';
 import { CaretLeft } from "phosphor-react";
 
-
 const Single = ({ exercise }) => {
-  // @ts-ignore
   const { gender } = useContext(GenderContext);
 
   return (
@@ -32,7 +30,7 @@ const Single = ({ exercise }) => {
             </h1>
 
             <p className="text-sm  text-gray-300  mb-4">
-              {exercise.bodyAreas.map((area, index) => (
+              {exercise.bodyAreas.map((area: string, index: number) => (
                 <span key={area}>
                   {area + (index !== exercise.bodyAreas.length - 1 ? ' | ' : '')}
                 </span>

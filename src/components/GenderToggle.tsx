@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import { GenderContext } from './providers/GenderProvider';
 
 const GenderToggle = () => {
-  // @ts-ignore
   const { gender, setGender } = useContext(GenderContext);
 
   return (
@@ -19,7 +18,7 @@ const GenderToggle = () => {
 
       <label htmlFor="genderToggle" className="inline">Female</label>
     </div>
-  )
-}
+  );
+};
 
 export { GenderToggle }

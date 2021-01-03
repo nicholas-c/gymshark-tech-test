@@ -4,8 +4,23 @@ import { slugify } from './../../utils';
 type NextApiRequestWithQuery = NextApiRequest & {
   query: {
     offset: string,
-    limit: string
+    limit: string,
+    groups: string,
+    name: string
   }
+}
+
+type SingleExercise = {
+  id: string,
+  name: string,
+  transcript: string,
+  female: {
+    image: string
+  },
+  male: {
+    image: string
+  },
+  bodyAreas: Array<string>
 }
 
 const exercisesApi = async (req: NextApiRequestWithQuery, res: NextApiResponse) => {
@@ -21,13 +36,12 @@ const exercisesApi = async (req: NextApiRequestWithQuery, res: NextApiResponse) 
     };
 
     if (groups) {
-      // @ts-ignore
       const filter = groups.split(',');
 
-      data.exercises = data.exercises.filter(item => {
+      data.exercises = data.exercises.filter((item: SingleExercise) => {
         let match = false;
 
-        item.bodyAreas.forEach(area => {
+        item.bodyAreas.forEach((area: string) => {
           const contains = filter.includes(area.toLowerCase());
 
           if (contains) {

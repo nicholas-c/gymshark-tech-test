@@ -1,21 +1,37 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState } from 'react';
 
-const ExerciseContext = createContext({});
+type SingleExercise = {
+  id: string,
+  name: string,
+  transcript: string,
+  female: {
+    image: string
+  },
+  male: {
+    image: string
+  },
+  bodyAreas: Array<string>
+}
+
+const ExerciseContext = createContext<{
+  exercises: Array<SingleExercise>,
+  setExercises: any
+}>({
+  exercises: [],
+  setExercises: () => {}
+});
 
 const ExerciseContextProvider = ({children}) => {
   const [ exercises, setExercises ] = useState([]);
 
-  const updateExercises = (data) => setExercises([...exercises, ...data]);
-
   return (
     <ExerciseContext.Provider value={{
       exercises,
-      updateExercises,
       setExercises
     }}>
       {children}
     </ExerciseContext.Provider>
-  )
+  );
 };
 
 export { ExerciseContext, ExerciseContextProvider }
